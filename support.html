@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ES ID - Support Center</title>
+  <style>
+    :root {
+      --orange: #f7941d;
+      --dark-blue: #0a0a0f;
+      --light-gray: #f1f1f1;
+      --gray: #ccc;
+      --white: #fff;
+      --black: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #ffffff, #e5e5e5);
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--dark-blue);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--white);
+    }
+
+    header .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    nav a {
+      color: var(--gray);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      color: var(--dark-blue);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+
+    .search-section {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .search-section input {
+      width: 80%;
+      max-width: 500px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 2px solid var(--gray);
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .faq-section {
+      padding: 2rem 1rem;
+    }
+
+    .faq-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: var(--dark-blue);
+    }
+
+    .faq-item {
+      background: var(--white);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      margin: 0.5rem auto;
+      max-width: 700px;
+      transition: all 0.3s;
+    }
+
+    .faq-item h4 {
+      color: var(--orange);
+      font-size: 1.1rem;
+    }
+
+    .faq-item p {
+      color: #333;
+      margin-top: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: auto;
+      background-color: var(--dark-blue);
+      color: var(--gray);
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      color: var(--orange);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ES ID</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Support</a>
+      <a href="#">Legal</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Need Help?</h2>
+    <p>Search our help center for answers to your questions</p>
+  </section>
+
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="Search for help (e.g. connect Steam, login issues, API access)..." onkeyup="filterFAQs()" />
+  </section>
+
+  <section class="faq-section">
+    <h3>Frequently Asked Questions</h3>
+    <div id="faqList">
+      <div class="faq-item">
+        <h4>How do I connect my ES ID to Steam?</h4>
+        <p>Go to the Linked Accounts section in your dashboard and select "Connect Steam". Follow the prompts to authorize your Steam account.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I use ES ID on console platforms like Xbox or PlayStation?</h4>
+        <p>Yes! ES ID supports linking Xbox and PlayStation accounts for cross-platform gameplay and syncing achievements.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How secure is ES ID?</h4>
+        <p>We use end-to-end encryption, 2FA, and secure hashing to protect user data across all connected platforms and services.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How can I request access to the API or source code?</h4>
+        <p>To request access, please contact us with a valid reason. Source code access has a one-time fee of €50 and requires approval.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What should I do if I forgot my password?</h4>
+        <p>Click "Forgot Password" on the login screen. You’ll receive an email with reset instructions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Engineering Softcodes™. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a> |
+      <a href="#">Open Source</a> |
+      <a href="#">Legal</a> |
+      <a href="#">API</a> |
+      <a href="#">Docs</a>
+    </p>
+  </footer>
+
+  <script>
+    function filterFAQs() {
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toLowerCase();
+      const faqList = document.getElementById("faqList");
+      const faqs = faqList.getElementsByClassName("faq-item");
+
+      for (let i = 0; i < faqs.length; i++) {
+        const question = faqs[i].getElementsByTagName("h4")[0];
+        const answer = faqs[i].getElementsByTagName("p")[0];
+        const combinedText = question.textContent + " " + answer.textContent;
+
+        if (combinedText.toLowerCase().indexOf(filter) > -1) {
+          faqs[i].style.display = "";
+        } else {
+          faqs[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
