@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ES ID - One Secure Account</title>
+  <style>
+    :root {
+      --orange: #f7941d;
+      --dark-blue: #0a0a0f;
+      --light-gray: #f1f1f1;
+      --gray: #ccc;
+      --white: #fff;
+      --black: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #ffffff, #e5e5e5);
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--dark-blue);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--white);
+    }
+
+    header .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    nav a {
+      color: var(--gray);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      color: var(--dark-blue);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+
+    .auth-buttons {
+      margin-top: 2rem;
+    }
+
+    .auth-buttons button {
+      margin: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      border: none;
+      background: var(--dark-blue);
+      color: var(--white);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .auth-buttons button:hover {
+      background: var(--orange);
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      background: var(--light-gray);
+      border-top: 2px solid var(--gray);
+    }
+
+    .section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark-blue);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      min-width: 220px;
+      max-width: 280px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h4 {
+      margin-bottom: 0.5rem;
+      color: var(--dark-blue);
+    }
+
+    footer {
+      margin-top: auto;
+      background-color: var(--dark-blue);
+      color: var(--gray);
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      color: var(--orange);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ES ID</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Support</a>
+      <a href="#">Legal</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to ES ID</h2>
+    <p>One secure account for your entire gaming ecosystem</p>
+
+    <div class="auth-buttons">
+      <button>Login</button>
+      <button>Sign Up</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Games You Can Connect</h3>
+    <div class="cards">
+      <div class="card">
+        <h4>Insane Forest</h4>
+        <p>Explore and survive the wild.</p>
+      </div>
+      <div class="card">
+        <h4>Choice Of Light</h4>
+        <p>Modern FPS with vibrant combat.</p>
+      </div>
+      <div class="card">
+        <h4>World Of Ruin</h4>
+        <p>Post-apocalyptic open world game.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Supported Platforms</h3>
+    <div class="cards">
+      <div class="card">
+        <h4>Steam</h4>
+        <p>Login and sync your account.</p>
+      </div>
+      <div class="card">
+        <h4>Xbox</h4>
+        <p>Connect your Xbox games easily.</p>
+      </div>
+      <div class="card">
+        <h4>PlayStation</h4>
+        <p>Full PlayStation integration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Studios & Companies Using ES ID</h3>
+    <div class="cards">
+      <div class="card">
+        <h4>Engineering Softcodes™</h4>
+        <p>ES ID is powering secure logins across all games.</p>
+      </div>
+      <div class="card">
+        <h4>Dynamic Rise Engine</h4>
+        <p>Future-proof login for developers.</p>
+      </div>
+      <div class="card">
+        <h4>OG Store</h4>
+        <p>Play any game, any time with ES ID.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Engineering Softcodes™. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a> |
+      <a href="#">Open Source</a> |
+      <a href="#">Legal</a> |
+      <a href="#">API</a> |
+      <a href="#">Docs</a>
+    </p>
+  </footer>
+
+</body>
+</html>
