@@ -55,71 +55,38 @@
       color: var(--orange);
     }
 
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
     }
 
-    .hero h2 {
-      font-size: 2.8rem;
+    h1 {
       color: var(--dark-blue);
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #444;
-      margin-top: 0.5rem;
-    }
-
-    .search-section {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    .search-section input {
-      width: 80%;
-      max-width: 500px;
-      padding: 1rem;
-      font-size: 1rem;
-      border: 2px solid var(--gray);
-      border-radius: 8px;
-      outline: none;
-    }
-
-    .faq-section {
-      padding: 2rem 1rem;
-    }
-
-    .faq-section h3 {
-      font-size: 1.8rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
       text-align: center;
-      color: var(--dark-blue);
     }
 
-    .faq-item {
-      background: var(--white);
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      margin: 0.5rem auto;
-      max-width: 700px;
-      transition: all 0.3s;
+    section {
+      margin-bottom: 2rem;
     }
 
-    .faq-item h4 {
+    section h2 {
       color: var(--orange);
-      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.5rem;
     }
 
-    .faq-item p {
+    section p {
+      font-size: 1rem;
+      line-height: 1.6;
       color: #333;
-      margin-top: 0.3rem;
-      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
     }
 
     footer {
-      margin-top: auto;
       background-color: var(--dark-blue);
       color: var(--gray);
       padding: 2rem 1rem;
@@ -148,70 +115,34 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Need Help?</h2>
-    <p>Search our help center for answers to your questions</p>
-  </section>
+  <main>
+    <h1>Legal Information</h1>
 
-  <section class="search-section">
-    <input type="text" id="searchInput" placeholder="Search for help (e.g. connect Steam, login issues, API access)..." onkeyup="filterFAQs()" />
-  </section>
+    <section>
+      <h2>Disclaimer</h2>
+      <p>The information provided by ES ID ("we," "us," or "our") on this platform is for general informational purposes only. All information on the site is provided in good faith; however, we make no representation or warranty of any kind regarding the accuracy, adequacy, validity, reliability, or completeness of any information.</p>
+    </section>
 
-  <section class="faq-section">
-  <h3>Frequently Asked Questions</h3>
-  <div id="faqList">
+    <section>
+      <h2>Limitation of Liability</h2>
+      <p>Under no circumstance shall ES ID be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this platform.</p>
+    </section>
 
-    <div class="faq-item">
-      <h4>How do I connect my ES ID to a platform (like Steam, Epic Games, etc)?</h4>
-      <p>1. Log into your ES ID account, go to your <strong>Dashboard</strong>, then click on <strong>Settings</strong> → <strong>Account Connections</strong>.</p>
-      <p>2. There you will see icons or names of different platforms (e.g., Steam, Epic Games, Discord). Click on the one you want to connect.</p>
-      <p>3. A new window will open. Log in to your chosen account using your username/email and password, and confirm the connection.</p>
-      <p>4. Once connected, it will say <strong>"Connected"</strong>. If you don't see the platform listed or experience any issues, please contact <strong>ES Support</strong>.</p>
-    </div>
+    <section>
+      <h2>User Responsibilities</h2>
+      <p>By using ES ID, you agree to comply with all applicable laws and regulations and to use the platform responsibly. You are responsible for safeguarding your account credentials and for all activities that occur under your account.</p>
+    </section>
 
-    <div class="faq-item">
-      <h4>Which accounts can I connect to my ES ID?</h4>
-      <p>You can connect the following accounts to your ES ID:</p>
-      <ul>
-        <li>Steam</li>
-        <li>Epic Games</li>
-        <li>Xbox (Microsoft)</li>
-        <li>PlayStation</li>
-        <li>Nintendo</li>
-        <li>Itch.io</li>
-        <li>Game Jolt</li>
-        <li>GOG</li>
-        <li>Twitch</li>
-        <li>Kick</li>
-        <li>Discord</li>
-        <li>Google</li>
-        <li>NVIDIA</li>
-        <li>VK</li>
-        <li>TikTok</li>
-        <li>Faceit</li>
-        <li>X</li>
-      </ul>
-      <p>More platforms may be added in the future. If a platform is missing or you're having trouble connecting, contact <strong>ES Support</strong>.</p>
-    </div>
+    <section>
+      <h2>Changes to Legal Information</h2>
+      <p>We reserve the right to update or change our legal information at any time without prior notice. It is your responsibility to review this page periodically for changes.</p>
+    </section>
 
-    <div class="faq-item">
-      <h4>How secure is ES ID?</h4>
-      <p>We use end-to-end encryption, Two-Factor Authentication (2FA), and secure password hashing to protect your data across all platforms.</p>
-    </div>
-
-    <div class="faq-item">
-      <h4>What should I do if I forgot my password?</h4>
-      <p>Click <strong>"Forgot Password"</strong> on the login page. You’ll receive an email with reset instructions. If you don’t get the email or need help, please contact <strong>ES Support</strong>.</p>
-    </div>
-
-    <div class="faq-item">
-      <h4>How can I request access to the API or source code?</h4>
-      <p>To request access, contact us and provide a valid reason. Source code access requires approval and a one-time payment of €50.</p>
-    </div>
-
-  </div>
-</section>
-
+    <section>
+      <h2>Contact Us</h2>
+      <p>If you have any questions about this legal information, please contact <a href="support">ES Support</a>.</p>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Engineering Softcodes™. All rights reserved.</p>
@@ -223,27 +154,6 @@
       <a href="docs">Docs</a>
     </p>
   </footer>
-
-  <script>
-    function filterFAQs() {
-      const input = document.getElementById("searchInput");
-      const filter = input.value.toLowerCase();
-      const faqList = document.getElementById("faqList");
-      const faqs = faqList.getElementsByClassName("faq-item");
-
-      for (let i = 0; i < faqs.length; i++) {
-        const question = faqs[i].getElementsByTagName("h4")[0];
-        const answer = faqs[i].getElementsByTagName("p")[0];
-        const combinedText = question.textContent + " " + answer.textContent;
-
-        if (combinedText.toLowerCase().indexOf(filter) > -1) {
-          faqs[i].style.display = "";
-        } else {
-          faqs[i].style.display = "none";
-        }
-      }
-    }
-  </script>
 
 </body>
 </html>
