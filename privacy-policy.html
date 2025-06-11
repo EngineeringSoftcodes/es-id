@@ -3,65 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy - ES ID</title>
+  <title>ES ID - Policy Privacy</title>
   <style>
-    body {
+    :root {
+      --orange: #f7941d;
+      --dark-blue: #0a0a0f;
+      --light-gray: #f1f1f1;
+      --gray: #ccc;
+      --white: #fff;
+      --black: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
-      color: #222;
-      padding: 2rem;
-      line-height: 1.6;
     }
 
-    h1, h2 {
-      color: #0a0a0f;
+    body {
+      background: linear-gradient(145deg, #ffffff, #e5e5e5);
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    a {
-      color: #f7941d;
+    header {
+      background: var(--dark-blue);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--white);
+    }
+
+    header .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    nav a {
+      color: var(--gray);
+      margin-left: 1.5rem;
       text-decoration: none;
+      font-weight: 500;
     }
 
-    a:hover {
-      text-decoration: underline;
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      color: var(--dark-blue);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+
+    .auth-buttons {
+      margin-top: 2rem;
+    }
+
+    .auth-buttons button {
+      margin: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      border: none;
+      background: var(--dark-blue);
+      color: var(--white);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .auth-buttons button:hover {
+      background: var(--orange);
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      background: var(--light-gray);
+      border-top: 2px solid var(--gray);
+    }
+
+    .section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--dark-blue);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      min-width: 220px;
+      max-width: 280px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h4 {
+      margin-bottom: 0.5rem;
+      color: var(--dark-blue);
     }
 
     footer {
-      margin-top: 4rem;
+      margin-top: auto;
+      background-color: var(--dark-blue);
+      color: var(--gray);
+      padding: 2rem 1rem;
       text-align: center;
       font-size: 0.9rem;
-      color: #777;
+    }
+
+    footer a {
+      color: var(--gray);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      color: var(--orange);
     }
   </style>
 </head>
 <body>
 
-  <h1>Privacy Policy</h1>
-  <p>Effective Date: June 11, 2025</p>
+  <header>
+    <div class="logo">ES ID</div>
+    <nav>
+      <a href="support">Support</a>
+      <a href="legal">Legal</a>
+    </nav>
+  </header>
 
-  <h2>1. Information We Collect</h2>
-  <p>We collect account details such as email, username, connected platform IDs, and activity logs related to ES ID usage.</p>
+  <section class="hero">
+    <h2>Policy Privacy</h2>
+    <p>Effective Date: June 11, 2025</p>
+  </section>
 
-  <h2>2. How We Use Information</h2>
-  <p>Your information is used to provide secure login, connect with supported platforms, and improve our services.</p>
+  <section class="hero">
+   <h2>1. Information We Collect</h2>
+   <p>We collect account details such as email, username, connected platform IDs, and activity logs related to ES ID usage.</p>
 
-  <h2>3. Data Sharing</h2>
-  <p>We do not sell your data. We may share data with trusted services for authentication or technical support purposes only.</p>
+   <h2>2. How We Use Information</h2>
+   <p>Your information is used to provide secure login, connect with supported platforms, and improve our services.</p>
 
-  <h2>4. Cookies & Tracking</h2>
-  <p>We use cookies to enhance your user experience and analyze site usage. You can manage cookies in your browser settings.</p>
+   <h2>3. Data Sharing</h2>
+   <p>We do not sell your data. We may share data with trusted services for authentication or technical support purposes only.</p>
 
-  <h2>5. Security</h2>
-  <p>We implement security measures like encryption and access controls to protect your data.</p>
+   <h2>4. Cookies & Tracking</h2>
+   <p>We use cookies to enhance your user experience and analyze site usage. You can manage cookies in your browser settings.</p>
 
-  <h2>6. Your Rights</h2>
-  <p>You may request access, correction, or deletion of your personal data by contacting us.</p>
+   <h2>5. Security</h2>
+   <p>We implement security measures like encryption and access controls to protect your data.</p>
 
-  <h2>7. Contact</h2>
-  <p>For privacy questions or concerns, email <a href="mailto:privacy@esid.dev">privacy@esid.dev</a>.</p>
+   <h2>6. Your Rights</h2>
+   <p>You may request access, correction, or deletion of your personal data by contacting us.</p>
+
+   <h2>7. Contact</h2>
+   <p>For privacy questions or concerns, email <a href="mailto:engineeringsoftcodes@mail.com">engineeringsoftcodes@mail.com</a>.</p>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Engineering Softcodes™. All rights reserved.</p>
+    <p>&copy; 2025 Engineering Softcodes ™. All rights reserved.</p>
+    <p>
+      <a href="privacy-policy">Privacy Policy</a> |
+      <a href="terms-of-service">Terms of Service</a> |
+      <a href="open-source">Open Source</a> |
+      <a href="legal">Legal</a> |
+      <a href="api">API</a> |
+      <a href="docs">Docs</a>
+    </p>
   </footer>
 
 </body>
