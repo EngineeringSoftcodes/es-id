@@ -1,8 +1,9 @@
+<!-- dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard</title>
   <style>
     body { background: #111; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
@@ -19,12 +20,13 @@
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "YOUR_MSG_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyAw24T9OSc17wEa_Tjm05rNECyL3BboHSc",
+      authDomain: "es-id-c3ec1.firebaseapp.com",
+      projectId: "es-id-c3ec1",
+      storageBucket: "es-id-c3ec1.appspot.com",
+      messagingSenderId: "1062622315075",
+      appId: "1:1062622315075:web:b1b61c98cfa9925c888af6",
+      measurementId: "G-P2LF0R55KE"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -32,17 +34,15 @@
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        document.getElementById('user-email').textContent = `Logged in as: ${user.email}`;
+        document.getElementById("user-email").textContent = `Logged in as: ${user.email}`;
       } else {
-        window.location.href = 'login.html';
+        window.location.href = "/signin";
       }
     });
 
     window.logout = () => {
-      signOut(auth).then(() => {
-        window.location.href = 'login.html';
-      });
-    }
+      signOut(auth).then(() => window.location.href = "/signin");
+    };
   </script>
 </body>
 </html>
