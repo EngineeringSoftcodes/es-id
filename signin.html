@@ -3,20 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ES ID - Login</title>
+  <title>ES ID - Sign In</title>
   <style>
-    body { background: #111; color: white; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-    input, button { padding: 10px; margin: 10px; border-radius: 5px; border: none; }
-    input { width: 200px; }
-    button { background: #00c3ff; color: white; cursor: pointer; }
+    :root {
+      --orange: #f7941d;
+      --dark-blue: #0a0a0f;
+      --light-gray: #f1f1f1;
+      --gray: #ccc;
+      --white: #fff;
+      --black: #000;
+    }
+
+    body {
+      background: linear-gradient(145deg, #ffffff, #e5e5e5);
+      color: var(--black);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      color: var(--dark-blue);
+      text-align: center;
+    }
+
+    input, button, select {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid var(--gray);
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: var(--dark-blue);
+      color: var(--white);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--orange);
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .link a {
+      color: var(--dark-blue);
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      color: var(--orange);
+    }
   </style>
 </head>
 <body>
-  <h2>Login to ES ID</h2>
-  <input type="email" id="login-email" placeholder="Email"><br>
-  <input type="password" id="login-password" placeholder="Password"><br>
-  <button onclick="signIn()">Login</button>
-  <br><a href="signup.html" style="color:#00c3ff">Don’t have an account? Sign Up</a>
+
+  <div class="form-container">
+    <h2>Sign In to ES ID</h2>
+    <input type="email" id="login-email" placeholder="Email" required>
+    <input type="password" id="login-password" placeholder="Password" required>
+    <button onclick="signIn()">Sign In</button>
+    <div class="link">
+      <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    </div>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -38,7 +107,7 @@
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => window.location.href = 'dashboard.html')
+        .then(() => window.location.href = '/dashboard')
         .catch(error => alert(error.message));
     }
   </script>
