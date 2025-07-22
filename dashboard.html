@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body { background: #111; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
+    button { padding: 10px 20px; border: none; background: #00c3ff; color: white; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to your Dashboard</h1>
+  <p id="user-email">Loading user...</p>
+  <button onclick="logout()">Logout</button>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_MSG_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById('user-email').textContent = `Logged in as: ${user.email}`;
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+
+    window.logout = () => {
+      signOut(auth).then(() => {
+        window.location.href = 'login.html';
+      });
+    }
+  </script>
+</body>
+</html>
