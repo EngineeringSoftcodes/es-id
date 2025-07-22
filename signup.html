@@ -1,14 +1,14 @@
+<!-- signup.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ES ID - Sign Up</title>
   <style>
     :root {
       --orange: #f7941d;
       --dark-blue: #0a0a0f;
-      --light-gray: #f1f1f1;
       --gray: #ccc;
       --white: #fff;
       --black: #000;
@@ -19,9 +19,8 @@
       color: var(--black);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
     }
@@ -30,14 +29,9 @@
       background: var(--white);
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 90%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       max-width: 400px;
-    }
-
-    h2 {
-      color: var(--dark-blue);
-      text-align: center;
+      width: 100%;
     }
 
     input, button {
@@ -46,13 +40,11 @@
       width: 100%;
       border: 1px solid var(--gray);
       border-radius: 5px;
-      box-sizing: border-box;
     }
 
     button {
       background: var(--dark-blue);
       color: var(--white);
-      font-weight: bold;
       cursor: pointer;
     }
 
@@ -64,19 +56,9 @@
       text-align: center;
       margin-top: 1rem;
     }
-
-    .link a {
-      color: var(--dark-blue);
-      text-decoration: none;
-    }
-
-    .link a:hover {
-      color: var(--orange);
-    }
   </style>
 </head>
 <body>
-
   <div class="form-container">
     <h2>Create ES ID</h2>
     <input type="text" id="signup-username" placeholder="Username" required>
@@ -92,32 +74,44 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "YOUR_MSG_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyAw24T9OSc17wEa_Tjm05rNECyL3BboHSc",
+      authDomain: "es-id-c3ec1.firebaseapp.com",
+      projectId: "es-id-c3ec1",
+      storageBucket: "es-id-c3ec1.appspot.com",
+      messagingSenderId: "1062622315075",
+      appId: "1:1062622315075:web:b1b61c98cfa9925c888af6",
+      measurementId: "G-P2LF0R55KE"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    window.signUp = () => {
-      const username = document.getElementById('signup-username').value;
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-      const antiBot = document.getElementById('anti-bot-check').checked;
+    window.signUp = async () => {
+      const username = document.getElementById("signup-username").value.trim();
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const antiBot = document.getElementById("anti-bot-check").checked;
 
-      if (!antiBot) return alert('Please confirm you are not a bot.');
-      if (!username.trim()) return alert('Username is required.');
+      if (!antiBot) return alert("Please confirm you're not a bot.");
+      if (!username) return alert("Username is required.");
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => window.location.href = '/dashboard')
-        .catch(error => alert(error.message));
-    }
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await setDoc(doc(db, "users", user.uid), {
+          username,
+          email,
+          uid: user.uid
+        });
+        window.location.href = "/dashboard";
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    };
   </script>
 </body>
 </html>
