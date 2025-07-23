@@ -1,18 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard</title>
+  <title>ES ID Dashboard</title>
   <style>
-    body { background: #111; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
-    button { padding: 10px 20px; border: none; background: #00c3ff; color: white; border-radius: 5px; cursor: pointer; }
+    :root {
+      --orange: #f7941d;
+      --dark-blue: #0a0a0f;
+      --light-gray: #f1f1f1;
+      --gray: #ccc;
+      --white: #fff;
+      --black: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #ffffff, #e5e5e5);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--dark-blue);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--white);
+    }
+
+    header .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    nav a {
+      color: var(--gray);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .user-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      min-width: 220px;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .info-card h4 {
+      color: var(--dark-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    button.logout {
+      padding: 10px 20px;
+      border: none;
+      background: var(--orange);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+
+    button.logout:hover {
+      background: #d57c13;
+    }
+
+    footer {
+      margin-top: auto;
+      background-color: var(--dark-blue);
+      color: var(--gray);
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to your Dashboard</h1>
-  <p id="user-email">Loading user...</p>
-  <button onclick="logout()">Logout</button>
+  <header>
+    <div class="logo">ES ID</div>
+    <nav>
+      <a href="/support">Support</a>
+      <a href="/legal">Legal</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="text-align: center;">Welcome to your Dashboard</h2>
+    <div class="user-info">
+      <div class="info-card">
+        <h4>Email</h4>
+        <p id="user-email">Loading...</p>
+      </div>
+      <div class="info-card">
+        <h4>UID</h4>
+        <p id="user-id">Loading...</p>
+      </div>
+      <div class="info-card">
+        <h4>Display Name</h4>
+        <p id="user-name">Loading...</p>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <button class="logout" onclick="logout()">Logout</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Engineering Softcodes ™. All rights reserved.</p>
+  </footer>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -33,7 +159,9 @@
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        document.getElementById("user-email").textContent = `Logged in as: ${user.email}`;
+        document.getElementById("user-email").textContent = user.email;
+        document.getElementById("user-id").textContent = user.uid;
+        document.getElementById("user-name").textContent = user.displayName || "Not Set";
       } else {
         window.location.href = "/signin";
       }
