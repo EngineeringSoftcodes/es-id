@@ -5,270 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ES ID Dashboard</title>
   <style>
-    :root {
-      --orange: #f7941d;
-      --dark-blue: #0a0a0f;
-      --light-gray: #f1f1f1;
-      --gray: #ccc;
-      --white: #fff;
-      --black: #000;
-      --red: #e74c3c;
-    }
-
-    * {
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0e0e10;
+      color: #ffffff;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: linear-gradient(145deg, #ffffff, #e5e5e5);
-      color: var(--black);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     header {
-      background: var(--dark-blue);
-      padding: 1rem 2rem;
+      background: #1f1f23;
+      padding: 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      color: var(--white);
+      justify-content: space-between;
     }
 
-    header .logo {
-      font-size: 1.7rem;
-      font-weight: bold;
-      color: var(--orange);
+    .avatar-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    nav a {
-      color: var(--gray);
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: 500;
+    .avatar-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #3a3a3d;
     }
 
-    nav a:hover {
-      color: var(--orange);
+    .change-avatar-btn {
+      background: #2e2e33;
+      color: #fff;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
     }
 
     main {
-      padding: 2rem;
+      padding: 30px;
     }
 
-    .dashboard-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+    h2 {
+      margin-bottom: 10px;
     }
 
-    .info-card {
-      background: var(--white);
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
+    input, select {
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      background: #2e2e33;
+      color: #fff;
     }
 
-    .info-card h4 {
-      color: var(--dark-blue);
-      margin-bottom: 0.5rem;
-    }
-
-    .actions {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    button {
+    .account-buttons button {
+      background: #2e2e33;
+      color: #fff;
       padding: 10px 20px;
       border: none;
-      background: var(--orange);
-      color: white;
-      border-radius: 5px;
-      margin: 0.5rem;
+      border-radius: 6px;
+      margin-right: 10px;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #d57c13;
-    }
-
-    .danger {
-      background-color: var(--red);
-    }
-
-    .danger:hover {
-      background-color: #c0392b;
-    }
-
-    footer {
-      margin-top: auto;
-      background-color: var(--dark-blue);
-      color: var(--gray);
-      padding: 2rem 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 15% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .modal-content button {
-      margin-top: 1rem;
+    .danger-zone button {
+      background: #9e2b2b;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">ES ID</div>
-    <nav>
-      <a href="/support">Support</a>
-      <a href="/legal">Legal</a>
-    </nav>
+    <h1>ES ID Dashboard</h1>
+    <div class="avatar-container">
+      <img id="avatar" src="/assets/avatar-default.png" alt="Profile Avatar" />
+      <input type="file" id="avatarUpload" accept="image/*" style="display: none;" />
+      <button class="change-avatar-btn" onclick="document.getElementById('avatarUpload').click()">Change Avatar</button>
+    </div>
   </header>
 
   <main>
-    <h2 style="text-align: center;">Welcome to your Dashboard</h2>
-    <div class="dashboard-section">
-      <div class="info-card">
-        <h4>Email</h4>
-        <p id="user-email">Loading...</p>
-      </div>
-      <div class="info-card">
-        <h4>User ID</h4>
-        <p id="user-id">Loading...</p>
-      </div>
-      <div class="info-card">
-        <h4>Display Name</h4>
-        <input type="text" id="displayNameInput" placeholder="Enter new display name">
-        <button onclick="updateProfileName()">Save</button>
-      </div>
-      <div class="info-card">
-        <h4>Country</h4>
-        <select id="countryInput">
-          <option value="">Select Country</option>
-          <option value="Germany">Germany</option>
-          <option value="USA">USA</option>
-          <option value="UK">UK</option>
-          <option value="Other">Other</option>
-        </select>
-        <button onclick="alert('Feature coming soon!')">Save</button>
-      </div>
-      <div class="info-card">
-        <h4>Connected Accounts</h4>
-        <button onclick="alert('Connect Steam - Coming soon')">Connect Steam</button>
-        <button onclick="alert('Connect Xbox - Coming soon')">Connect Xbox</button>
-        <button onclick="alert('Connect Twitch - Coming soon')">Connect Twitch</button>
-      </div>
+    <h2>Profile</h2>
+    <label>Display Name</label><br>
+    <input type="text" placeholder="PolandLetsPlay" /><br>
+
+    <label>Country</label><br>
+    <select>
+      <option>Germany</option>
+      <option>Poland</option>
+      <option>United States</option>
+      <!-- Add more countries -->
+    </select><br>
+
+    <h2>Connected Accounts</h2>
+    <div class="account-buttons">
+      <button>Connect Steam</button>
+      <button>Connect Twitch</button>
+      <button>Connect Xbox</button>
     </div>
-    <div class="actions">
-      <button onclick="confirmLogout()">Logout</button>
-      <button class="danger" onclick="confirmDelete()">Delete Account</button>
+
+    <h2>Danger Zone</h2>
+    <div class="danger-zone">
+      <button onclick="confirm('Are you sure you want to log out?')">Logout</button><br>
+      <button onclick="confirm('Are you sure you want to delete your account? This cannot be undone.')">Delete Account</button>
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Engineering Softcodes ™. All rights reserved.</p>
-  </footer>
+  <script>
+    // Avatar load from localStorage
+    const avatar = document.getElementById('avatar');
+    const fileInput = document.getElementById('avatarUpload');
 
-  <!-- Logout Modal -->
-  <div id="logoutModal" class="modal">
-    <div class="modal-content">
-      <p>Are you sure you want to logout?</p>
-      <button onclick="logout()">Yes, Logout</button>
-      <button onclick="closeModals()">Cancel</button>
-    </div>
-  </div>
+    const savedAvatar = localStorage.getItem('userAvatar');
+    if (savedAvatar) avatar.src = savedAvatar;
 
-  <!-- Delete Modal -->
-  <div id="deleteModal" class="modal">
-    <div class="modal-content">
-      <p>To delete your account, please contact our support for safety reasons.</p>
-      <a href="/support"><button>Go to Support</button></a>
-      <button onclick="closeModals()">Close</button>
-    </div>
-  </div>
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (!file) return;
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAw24T9OSc17wEa_Tjm05rNECyL3BboHSc",
-      authDomain: "es-id-c3ec1.firebaseapp.com",
-      projectId: "es-id-c3ec1",
-      storageBucket: "es-id-c3ec1.appspot.com",
-      messagingSenderId: "1062622315075",
-      appId: "1:1062622315075:web:b1b61c98cfa9925c888af6",
-      measurementId: "G-P2LF0R55KE"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.getElementById("user-email").textContent = user.email;
-        document.getElementById("user-id").textContent = user.uid;
-        document.getElementById("displayNameInput").value = user.displayName || "";
-      } else {
-        window.location.href = "/es-id/signin";
-      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        avatar.src = e.target.result;
+        localStorage.setItem('userAvatar', e.target.result);
+      };
+      reader.readAsDataURL(file);
     });
-
-    window.logout = () => {
-      signOut(auth).then(() => window.location.href = "/es-id/signin");
-    };
-
-    window.confirmLogout = () => {
-      document.getElementById("logoutModal").style.display = "block";
-    };
-
-    window.confirmDelete = () => {
-      document.getElementById("deleteModal").style.display = "block";
-    };
-
-    window.closeModals = () => {
-      document.getElementById("logoutModal").style.display = "none";
-      document.getElementById("deleteModal").style.display = "none";
-    };
-
-    window.updateProfileName = () => {
-      const name = document.getElementById("displayNameInput").value;
-      const user = auth.currentUser;
-      if (user) {
-        updateProfile(user, { displayName: name }).then(() => {
-          alert("Display name updated!");
-        }).catch((error) => {
-          console.error("Update error:", error);
-        });
-      }
-    };
   </script>
 </body>
 </html>
