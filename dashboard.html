@@ -12,6 +12,7 @@
       --gray: #ccc;
       --white: #fff;
       --black: #000;
+      --red: #e74c3c;
     }
 
     * {
@@ -59,10 +60,9 @@
       padding: 2rem;
     }
 
-    .user-info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .dashboard-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
     }
@@ -72,8 +72,6 @@
       padding: 1.5rem;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      min-width: 220px;
-      max-width: 280px;
       text-align: center;
     }
 
@@ -82,18 +80,31 @@
       margin-bottom: 0.5rem;
     }
 
-    button.logout {
+    .actions {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    button {
       padding: 10px 20px;
       border: none;
       background: var(--orange);
       color: white;
       border-radius: 5px;
+      margin: 0.5rem;
       cursor: pointer;
-      margin-top: 2rem;
     }
 
-    button.logout:hover {
+    button:hover {
       background: #d57c13;
+    }
+
+    .danger {
+      background-color: var(--red);
+    }
+
+    .danger:hover {
+      background-color: #c0392b;
     }
 
     footer {
@@ -103,6 +114,32 @@
       padding: 2rem 1rem;
       text-align: center;
       font-size: 0.9rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content button {
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -117,7 +154,7 @@
 
   <main>
     <h2 style="text-align: center;">Welcome to your Dashboard</h2>
-    <div class="user-info">
+    <div class="dashboard-section">
       <div class="info-card">
         <h4>Email</h4>
         <p id="user-email">Loading...</p>
@@ -128,11 +165,30 @@
       </div>
       <div class="info-card">
         <h4>Display Name</h4>
-        <p id="user-name">Loading...</p>
+        <input type="text" id="displayNameInput" placeholder="Enter new display name">
+        <button onclick="updateProfileName()">Save</button>
+      </div>
+      <div class="info-card">
+        <h4>Country</h4>
+        <select id="countryInput">
+          <option value="">Select Country</option>
+          <option value="Germany">Germany</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="Other">Other</option>
+        </select>
+        <button onclick="alert('Feature coming soon!')">Save</button>
+      </div>
+      <div class="info-card">
+        <h4>Connected Accounts</h4>
+        <button onclick="alert('Connect Steam - Coming soon')">Connect Steam</button>
+        <button onclick="alert('Connect Xbox - Coming soon')">Connect Xbox</button>
+        <button onclick="alert('Connect Twitch - Coming soon')">Connect Twitch</button>
       </div>
     </div>
-    <div style="text-align:center;">
-      <button class="logout" onclick="logout()">Logout</button>
+    <div class="actions">
+      <button onclick="confirmLogout()">Logout</button>
+      <button class="danger" onclick="confirmDelete()">Delete Account</button>
     </div>
   </main>
 
@@ -140,9 +196,27 @@
     <p>&copy; 2025 Engineering Softcodes ™. All rights reserved.</p>
   </footer>
 
+  <!-- Logout Modal -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button onclick="logout()">Yes, Logout</button>
+      <button onclick="closeModals()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <p>To delete your account, please contact our support for safety reasons.</p>
+      <a href="/support"><button>Go to Support</button></a>
+      <button onclick="closeModals()">Close</button>
+    </div>
+  </div>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAw24T9OSc17wEa_Tjm05rNECyL3BboHSc",
@@ -161,14 +235,39 @@
       if (user) {
         document.getElementById("user-email").textContent = user.email;
         document.getElementById("user-id").textContent = user.uid;
-        document.getElementById("user-name").textContent = user.displayName || "Not Set";
+        document.getElementById("displayNameInput").value = user.displayName || "";
       } else {
-        window.location.href = "/signin";
+        window.location.href = "/es-id/signin";
       }
     });
 
     window.logout = () => {
-      signOut(auth).then(() => window.location.href = "/signin");
+      signOut(auth).then(() => window.location.href = "/es-id/signin");
+    };
+
+    window.confirmLogout = () => {
+      document.getElementById("logoutModal").style.display = "block";
+    };
+
+    window.confirmDelete = () => {
+      document.getElementById("deleteModal").style.display = "block";
+    };
+
+    window.closeModals = () => {
+      document.getElementById("logoutModal").style.display = "none";
+      document.getElementById("deleteModal").style.display = "none";
+    };
+
+    window.updateProfileName = () => {
+      const name = document.getElementById("displayNameInput").value;
+      const user = auth.currentUser;
+      if (user) {
+        updateProfile(user, { displayName: name }).then(() => {
+          alert("Display name updated!");
+        }).catch((error) => {
+          console.error("Update error:", error);
+        });
+      }
     };
   </script>
 </body>
