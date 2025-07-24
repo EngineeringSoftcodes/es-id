@@ -1,109 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>My Dashboard</title>
   <style>
-    * {
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: white;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(to right, #1f1c2c, #928dab);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
-      overflow: hidden;
     }
 
     header {
-      width: 100%;
+      background: #1e1e1e;
       padding: 20px;
-      background: #28243c;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     header h1 {
-      font-size: 24px;
-      color: #00ffd5;
+      color: orange;
     }
 
     .profile {
       display: flex;
       align-items: center;
+      gap: 15px;
     }
 
     .profile img {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      margin-right: 10px;
-      object-fit: cover;
-      border: 2px solid #00ffd5;
+      border: 2px solid orange;
     }
 
     .dashboard {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 20px;
       padding: 20px;
-      width: 100%;
-      max-width: 1200px;
-      animation: fadeIn 1s ease-out;
     }
 
     .card {
-      background: #3b3751;
-      border-radius: 20px;
+      background: #2c2c2c;
+      border: 2px solid gray;
+      border-radius: 10px;
       padding: 20px;
-      transition: transform 0.3s ease, background 0.3s;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, background 0.2s;
       cursor: pointer;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      background: #4a4562;
+      background: #3a3a3a;
     }
 
     .card h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #00ffd5;
-    }
-
-    .card p {
-      font-size: 14px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      color: orange;
     }
 
     .footer {
-      margin-top: auto;
-      padding: 20px;
       text-align: center;
-      font-size: 12px;
-      color: #aaa;
+      padding: 20px;
+      background: #1e1e1e;
+      color: gray;
+      font-size: 0.9em;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      background: orange;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    select {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    label {
+      margin-top: 10px;
+      display: block;
+      font-weight: bold;
+      color: white;
+    }
+
+    .payment-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .payment-icons img {
+      height: 30px;
+      filter: grayscale(1) brightness(1.2);
     }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Welcome back, <span id="usernameDisplay">User</span>!</h1>
@@ -133,16 +138,37 @@
     </div>
   </div>
 
-  <div class="dashboard" style="margin-top: -10px;">
+  <div class="dashboard">
     <div class="card">
       <h2>Customize Profile</h2>
       <label for="usernameInput">Your Name:</label>
-      <input type="text" id="usernameInput" placeholder="Enter your name" style="margin-top: 10px; width: 100%; padding: 10px; border-radius: 6px; border: none;">
-      <button onclick="saveUserData()" style="margin-top: 10px; padding: 10px 20px; background: #00ffd5; border: none; border-radius: 6px; color: #000; font-weight: bold;">Save</button>
+      <input type="text" id="usernameInput" placeholder="Enter your name">
+      <button onclick="saveUserData()">Save</button>
     </div>
+
     <div class="card">
       <h2>Avatar</h2>
-      <button onclick="document.getElementById('avatarInput').click()" style="margin-top: 10px; padding: 10px 20px; background: #00ffd5; border: none; border-radius: 6px; color: #000; font-weight: bold;">Upload Avatar</button>
+      <button onclick="document.getElementById('avatarInput').click()">Upload Avatar</button>
+    </div>
+
+    <div class="card">
+      <h2>Currency</h2>
+      <label for="currencySelect">Choose currency:</label>
+      <select id="currencySelect">
+        <option value="EUR">Euro (€)</option>
+        <option value="USD">US Dollar ($)</option>
+        <option value="GBP">British Pound (£)</option>
+        <option value="PLN">Polish Złoty (zł)</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>Payment Methods</h2>
+      <div class="payment-icons">
+        <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+        <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard">
+        <img src="https://img.icons8.com/color/48/000000/steam.png" alt="Steam Wallet">
+      </div>
     </div>
   </div>
 
@@ -201,5 +227,4 @@
     });
   </script>
 </body>
-
 </html>
